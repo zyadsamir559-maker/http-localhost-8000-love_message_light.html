@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>رسالة حب هنا 💌</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+  body {
+    font-family: 'Cairo', Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  @keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #ff6f91;
+  }
+
+  input {
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background-color: #ff6f91;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #ff6f91;
+  }
+
+  button:hover {
+    background-color: #ff4757;
+    box-shadow: 0 0 20px #ff4757;
+  }
+
+  #message {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.5;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .showMessage {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<h2>أدخل كلمة السر لتلقي رسالتك 💌</h2>
+<input type="password" id="passwordInput" placeholder="كلمة السر">
+<br>
+<button onclick="checkPassword()">افتح الرسالة</button>
+<p id="message"></p>
+
+<script>
+  const correctPassword = "882008";
+
+  function checkPassword() {
+    const userInput = document.getElementById("passwordInput").value;
+    const msg = document.getElementById("message");
+    msg.classList.remove('showMessage'); 
+
+    if(userInput === correctPassword) {
+      msg.innerHTML = "";
+      const lines = [
+        "✨ مرحبا هنا! ✨",
+        "💖 أحبك من كل قلبي 💖",
+        "😘 أنتِ دائمًا في بالي 😘"
+      ];
+      let i = 0;
+      const interval = setInterval(() => {
+        if(i < lines.length){
+          msg.innerHTML += lines[i] + "<br>";
+          msg.classList.add('showMessage');
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 1000);
+    } else {
+      msg.innerHTML = "❌ كلمة السر غلط، حاول مرة أخرى ❌";
+      msg.classList.add('showMessage');
+    }
+  }
+</script>
+</body>
+</html>
